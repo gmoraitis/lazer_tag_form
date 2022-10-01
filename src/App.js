@@ -7,6 +7,8 @@ const defaultState = {
   lastName: null,
   email: null,
   players: null,
+  date: null,
+  time: null,
 };
 
 
