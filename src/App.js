@@ -19,7 +19,7 @@ const validateForm = (errors) => {
   return valid;
 };
 
-// Storing the initial state in a constant variable 
+// Storing the initial state in a constant variable so that we can reset and reuse the state later  
 const defaultState = {
   submitting: false,
   data: {
@@ -34,6 +34,8 @@ const defaultState = {
     firstName: '',
     lastName: '',
     email: '',
+    players: '',
+    time: 'Invalid',
   },
 };
 
@@ -66,6 +68,12 @@ export default class Form extends React.Component {
       case 'email':
         errors.email = validEmailRegex.test(value) ? '' : 'Email is not valid!';
         break;
+      case 'players':
+        errors.players = value < 1 ? 'Type least 1 person!' : '';
+        break;
+      case 'time':
+        errors.time = !value ? '' : '';
+        break;
       default:
         break;
     }
@@ -86,14 +94,14 @@ export default class Form extends React.Component {
 
   render() {
     // Passing state to the render method
-    const { errors } = this.state;
+    const { errors, submitting, data } = this.state;
     return (
       <div>
-        <div>
+        <div className="form">
           <h2>LazerTag World 🔫</h2>
             <form onSubmit={this.handleSubmit}>
               {/* First Name */}
-              <div>
+              <div className="firstLastName">
                 <label>First Name</label>
                 <input
                   type="text"
@@ -107,7 +115,7 @@ export default class Form extends React.Component {
               </div>
 
               {/* Last Name */}
-              <div>
+              <div className="firstLastName">
                 <label>Last Name</label>
                 <input
                   type="text"
@@ -120,7 +128,7 @@ export default class Form extends React.Component {
                 )}
               </div>
               {/* Email */}
-              <div>
+              <div className="email">
                 <label>Email</label>
                 <input
                   type="email"
@@ -134,7 +142,7 @@ export default class Form extends React.Component {
               </div>
 
               {/* Players */}
-              <div>
+              <div className="players">
                 <label>Players</label>
                 <input
                   type="number"
@@ -144,10 +152,13 @@ export default class Form extends React.Component {
                   onChange={this.handleChange}
                   required
                 />
+                {errors.players.length > 0 && (
+                  <span className="error">{errors.players}</span>
+                )}
               </div>
 
               {/* Date*/}
-              <div>
+              <div className="date">
                 <label>Choose a date :</label>
                 <input
                   type="date"
@@ -178,7 +189,9 @@ export default class Form extends React.Component {
                   <option value="5:00PM - 6:00PM">5:00PM - 6:00PM</option>
                   <option value="6:00PM - 7:00PM">6:00PM - 7:00PM</option>
                 </select>
-
+                {errors.time.length == 0 && (
+                  <span className="error">{errors.time}</span>
+                )}
               </div>
 
               <div className="submit">
