@@ -1,25 +1,34 @@
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import React from 'react';
+
+
+export default class App extends React.Component {
+  render() {
+    return (
+      <div className='wrapper'>
+        <div className='form-wrapper'>
+          <h2>Create Account</h2>
+          <form>
+            <div className='fullName'>
+              <label htmlFor="fullName">Full Name</label>
+              <input type='text' name='fullName' />
+            </div>
+            <div className='email'>
+              <label htmlFor="email">Email</label>
+              <input type='email' name='email' />
+            </div>
+            <div className='password'>
+              <label htmlFor="password">Password</label>
+              <input type='password' name='password' />
+            </div>
+            <div className='submit'>
+              <button>Create</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    );
+  }
 }
 
-export default App;
