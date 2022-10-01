@@ -105,3 +105,13 @@ input.error {
   flex-wrap: wrap;
 }
 
+footer,a {
+  position: relative;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: white;
+  text-align: left;
+  font-size: 0.9em;
+  text-decoration: none;
+}

@@ -87,9 +87,18 @@ export default class Form extends React.Component {
     event.preventDefault();
     if (validateForm(this.state.errors)) {
       console.info('Valid Form');
+      this.handlePrint();
     } else {
       console.error('Invalid Form');
     }
+  };
+
+  // I putted handlePrint inside handleSubmit to pass the logic of handlePrint
+  // when we use the handleSubmit function
+  handlePrint = () => {
+    console.log(this.state);
+    // how we can write something here in order to print the data or state in the render method in a list ?
+    this.setState({ submitting: true });
   };
 
   render() {
@@ -99,105 +108,122 @@ export default class Form extends React.Component {
       <div>
         <div className="form">
           <h2>LazerTag World 🔫</h2>
-          <form onSubmit={this.handleSubmit}>
-            {/* First Name */}
-            <div className="firstLastName">
-              <label>First Name</label>
-              <input
-                type="text"
-                name="firstName"
-                onChange={this.handleChange}
-                required
-              />
-              {errors.firstName.length > 0 && (
-                <span className="error">{errors.firstName}</span>
-              )}
-            </div>
+          {!submitting && (
+            <form onSubmit={this.handleSubmit}>
+              {/* First Name */}
+              <div className="firstLastName">
+                <label>First Name</label>
+                <input
+                  type="text"
+                  name="firstName"
+                  onChange={this.handleChange}
+                  required
+                />
+                {errors.firstName.length > 0 && (
+                  <span className="error">{errors.firstName}</span>
+                )}
+              </div>
 
-            {/* Last Name */}
-            <div className="firstLastName">
-              <label>Last Name</label>
-              <input
-                type="text"
-                name="lastName"
-                onChange={this.handleChange}
-                required
-              />
-              {errors.lastName.length > 0 && (
-                <span className="error">{errors.lastName}</span>
-              )}
-            </div>
-            {/* Email */}
-            <div className="email">
-              <label>Email</label>
-              <input
-                type="email"
-                name="email"
-                onChange={this.handleChange}
-                required
-              />
-              {errors.email.length > 0 && (
-                <span className="error">{errors.email}</span>
-              )}
-            </div>
+              {/* Last Name */}
+              <div className="firstLastName">
+                <label>Last Name</label>
+                <input
+                  type="text"
+                  name="lastName"
+                  onChange={this.handleChange}
+                  required
+                />
+                {errors.lastName.length > 0 && (
+                  <span className="error">{errors.lastName}</span>
+                )}
+              </div>
+              {/* Email */}
+              <div className="email">
+                <label>Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  onChange={this.handleChange}
+                  required
+                />
+                {errors.email.length > 0 && (
+                  <span className="error">{errors.email}</span>
+                )}
+              </div>
 
-            {/* Players */}
-            <div className="players">
-              <label>Players</label>
-              <input
-                type="number"
-                min="0"
-                max="25"
-                name="players"
-                onChange={this.handleChange}
-                required
-              />
-              {errors.players.length > 0 && (
-                <span className="error">{errors.players}</span>
-              )}
-            </div>
+              {/* Players */}
+              <div className="players">
+                <label>Players</label>
+                <input
+                  type="number"
+                  min="0"
+                  max="25"
+                  name="players"
+                  onChange={this.handleChange}
+                  required
+                />
+                {errors.players.length > 0 && (
+                  <span className="error">{errors.players}</span>
+                )}
+              </div>
 
-            {/* Date*/}
-            <div className="date">
-              <label>Choose a date :</label>
-              <input
-                type="date"
-                name="date"
-                onChange={this.handleChange}
-                min="2022-1-01"
-                max="2023-12-31"
-                required
-              />
-            </div>
+              {/* Date*/}
+              <div className="date">
+                <label>Choose a date :</label>
+                <input
+                  type="date"
+                  name="date"
+                  onChange={this.handleChange}
+                  min="2022-1-01"
+                  max="2023-12-31"
+                  required
+                />
+              </div>
+              {/* Time */}
+              <div className="time">
+                <label>Choose an hourly session : </label>
+                <select name="time" onChange={this.handleChange} required>
+                  <option disabled selected value>
+                    -- Please select an option --
+                  </option>
+                  <option value="08:00AM - 09:00AM">08:00AM - 09:00AM</option>
+                  <option value="09:00AM - 10:00AM">09:00AM - 10:00AM</option>
+                  <option value="10:00AM - 11:00A">10:00AM - 11:00AM</option>
+                  <option value="11:00AM - 12:00PM">11:00AM - 12:00PM</option>
+                  <option value="12:00PM - 1:00PM">12:00PM - 1:00PM</option>
+                  <option value="1:00PM - 2:00PM">1:00PM - 2:00PM</option>
+                  <option value="2:00PM - 3:00PM">2:00PM - 3:00PM</option>
+                  <option value="3:00PM - 4:00PM">3:00PM - 4:00PM</option>
+                  <option value="4:00PM - 5:00PM">4:00PM - 5:00PM</option>
+                  <option value="5:00PM - 6:00PM">5:00PM - 6:00PM</option>
+                  <option value="6:00PM - 7:00PM">6:00PM - 7:00PM</option>
+                </select>
+                {errors.time.length == 0 && (
+                  <span className="error">{errors.time}</span>
+                )}
+              </div>
 
-            {/* Time */}
-            <div className="time">
-              <label>Choose an hourly session : </label>
-              <select name="time" onChange={this.handleChange} required>
-                <option disabled selected value>
-                  -- Please select an option --
-                </option>
-                <option value="08:00AM - 09:00AM">08:00AM - 09:00AM</option>
-                <option value="09:00AM - 10:00AM">09:00AM - 10:00AM</option>
-                <option value="10:00AM - 11:00A">10:00AM - 11:00AM</option>
-                <option value="11:00AM - 12:00PM">11:00AM - 12:00PM</option>
-                <option value="12:00PM - 1:00PM">12:00PM - 1:00PM</option>
-                <option value="1:00PM - 2:00PM">1:00PM - 2:00PM</option>
-                <option value="2:00PM - 3:00PM">2:00PM - 3:00PM</option>
-                <option value="3:00PM - 4:00PM">3:00PM - 4:00PM</option>
-                <option value="4:00PM - 5:00PM">4:00PM - 5:00PM</option>
-                <option value="5:00PM - 6:00PM">5:00PM - 6:00PM</option>
-                <option value="6:00PM - 7:00PM">6:00PM - 7:00PM</option>
-              </select>
-              {errors.time.length == 0 && (
-                <span className="error">{errors.time}</span>
-              )}
-            </div>
+              <div className="submit">
+                <button type="submit">Submit</button>
+              </div>
+            </form>
+          )}
 
-            <div className="submit">
-              <button type="submit">Submit</button>
+          {submitting && (
+            <div>
+              You are submitting the following:
+              <ul>
+                {Object.entries(data).map(
+                  ([name, value]) =>
+                    value && (
+                      <li key={name}>
+                        <strong>{name}</strong> : {value.toString()}
+                      </li>
+                    )
+                )}
+              </ul>
             </div>
-          </form>
+          )}
         </div>
         <div className='footer'>
           <footer>
