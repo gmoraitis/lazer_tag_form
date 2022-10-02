@@ -11,6 +11,7 @@ const validNameRegex = RegExp(/^[a-z ,.'-]+$/i);
 // Form validation
 const validateForm = (errors) => {
   let valid = true;
+  // returns true if there are no errors
   Object.values(errors).forEach(function (errorMessage) {
     if (errorMessage.length > 0) {
       valid = false;
@@ -39,12 +40,15 @@ const defaultState = {
   },
 };
 
+// Form component
 export default class Form extends React.Component {
   constructor(props) {
     super(props);
     this.state = defaultState;
   }
 
+// handleChange function to handle the input changes 
+// and set the state of the form data and errors.
   handleChange = (event) => {
     event.preventDefault();
     const { name, value } = event.target;
@@ -52,6 +56,7 @@ export default class Form extends React.Component {
     // we assign the value of the state to a variable errors so we can use it in the switch statement
     let errors = this.state.errors;
 
+    // we use a switch statement to check the name of the input field and validate it
     switch (name) {
       case 'firstName':
         errors.firstName =
@@ -83,6 +88,8 @@ export default class Form extends React.Component {
     this.setState({ errors, data: { ...data, [name]: value } });
   };
 
+
+  // handleSubmit function to handle the submit event of the form.
   handleSubmit = (event) => {
     event.preventDefault();
     if (validateForm(this.state.errors)) {
@@ -94,10 +101,10 @@ export default class Form extends React.Component {
   };
 
   // I putted handlePrint inside handleSubmit to pass the logic of handlePrint
-  // when we use the handleSubmit function
+  // when we use the handleSubmit function.
   handlePrint = () => {
     console.log(this.state);
-    // how we can write something here in order to print the data or state in the render method in a list ?
+    // I used the setState method to change the state of the submitting property to true
     this.setState({ submitting: true });
   };
 
@@ -120,6 +127,7 @@ export default class Form extends React.Component {
           <h2>LazerTag World 🔫</h2>
           {!submitting && (
             <form onSubmit={this.handleSubmit}>
+
               {/* First Name */}
               <div className="firstLastName">
                 <label>First Name</label>
@@ -147,6 +155,7 @@ export default class Form extends React.Component {
                   <span className="error">{errors.lastName}</span>
                 )}
               </div>
+
               {/* Email */}
               <div className="email">
                 <label>Email</label>
@@ -189,6 +198,7 @@ export default class Form extends React.Component {
                   required
                 />
               </div>
+
               {/* Time */}
               <div className="time">
                 <label>Choose an hourly session : </label>
@@ -219,6 +229,7 @@ export default class Form extends React.Component {
             </form>
           )}
 
+          {/* If the state of the submitting property is true, then we show the message */}
           {submitting && (
             <div>
               You are submitting the following:
@@ -233,6 +244,8 @@ export default class Form extends React.Component {
                 )}
               </ul>
               <div className="submit" >
+                {/* // I added the onClick event to the button to call the hundleInitialForm function
+                // and bring back the form in its initial state. */}
                 <button type="button" onClick={this.hundleInitialForm}>Return</button>
               </div>
             </div>
