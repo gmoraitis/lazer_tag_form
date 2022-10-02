@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/%7Blazer_tag_form%7D/static/css/main.688bef2f.css",
+    "main.js": "/%7Blazer_tag_form%7D/static/js/main.a8deb346.js",
+    "index.html": "/%7Blazer_tag_form%7D/index.html",
+    "main.688bef2f.css.map": "/%7Blazer_tag_form%7D/static/css/main.688bef2f.css.map",
+    "main.a8deb346.js.map": "/%7Blazer_tag_form%7D/static/js/main.a8deb346.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.688bef2f.css",
+    "static/js/main.a8deb346.js"
+  ]
+}
