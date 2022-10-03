@@ -110,7 +110,7 @@ export default class Form extends React.Component {
 
   // A function that brings back the form in its initial state
   // and call it from the render method.
-  hundleInitialForm = () => {
+  handleInitialForm = () => {
     this.setState({
       // take a copy of the initial state (...) and assign false to the submitting property
       ...defaultState, submitting: false
@@ -246,7 +246,7 @@ export default class Form extends React.Component {
               <div className="submit" >
                 {/* // I added the onClick event to the button to call the hundleInitialForm function
                 // and bring back the form in its initial state. */}
-                <button type="button" onClick={this.hundleInitialForm}>Return</button>
+                <button type="button" onClick={this.handleInitialForm}>Return</button>
               </div>
             </div>
           )}
