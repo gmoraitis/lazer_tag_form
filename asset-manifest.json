@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/lazer_tag_form/static/css/main.688bef2f.css",
-    "main.js": "/lazer_tag_form/static/js/main.a8deb346.js",
+    "main.js": "/lazer_tag_form/static/js/main.03c057c0.js",
     "index.html": "/lazer_tag_form/index.html",
     "main.688bef2f.css.map": "/lazer_tag_form/static/css/main.688bef2f.css.map",
-    "main.a8deb346.js.map": "/lazer_tag_form/static/js/main.a8deb346.js.map"
+    "main.03c057c0.js.map": "/lazer_tag_form/static/js/main.03c057c0.js.map"
   },
   "entrypoints": [
     "static/css/main.688bef2f.css",
-    "static/js/main.a8deb346.js"
+    "static/js/main.03c057c0.js"
   ]
 }
